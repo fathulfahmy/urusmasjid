@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('method')->default(17);
             $table->string('school')->default(0);
             $table->string('tune')->default('0,0,0,0,0,0,0,0,0');
-            $table->float('iqamat')->default(10);
-            $table->float('pray')->default(10);
+            $table->float('adhan_duration')->default(10);
+            $table->float('prayer_duration')->default(10);
             $table->timestamps();
             $table->softDeletes();
         });

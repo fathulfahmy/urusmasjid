@@ -11,7 +11,7 @@ class Mosque extends BaseModel
         'method',
         'school',
         'tune',
-        'iqamat',
-        'pray',
+        'adhan_duration',
+        'prayer_duration',
     ];
 }

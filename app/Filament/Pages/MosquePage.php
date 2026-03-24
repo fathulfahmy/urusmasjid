@@ -117,15 +117,17 @@ class MosquePage extends Page
                                         ->required(),
                                 ]),
                                 Section::make([
-                                    TextInput::make('iqamat')
+                                    TextInput::make('adhan_duration')
                                         ->numeric()
                                         ->minValue(0)
                                         ->default(10)
+                                        ->suffix('second')
                                         ->required(),
-                                    TextInput::make('pray')
+                                    TextInput::make('prayer_duration')
                                         ->numeric()
                                         ->minValue(0)
                                         ->default(10)
+                                        ->suffix('second')
                                         ->required(),
                                 ]),
                             ]),

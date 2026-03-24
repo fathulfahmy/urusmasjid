@@ -107,8 +107,7 @@ new class extends Component {
                 </h1>
 
                 <p class="mt-4 text-pretty text-base text-zinc-700 sm:text-lg/relaxed dark:text-zinc-200">
-                    A platform to manage digital displays, record donations and spendings, and to track appliances
-                    service history and stock supply level.
+                    Manage mosque assets and operations in one place.
                 </p>
 
                 <div class="mt-4 flex justify-center gap-4 sm:mt-6">
@@ -141,8 +140,8 @@ new class extends Component {
                         </h2>
 
                         <p class="mt-4 text-pretty text-zinc-700 dark:text-zinc-200">
-                            Transform existing mosque digital displays with infographics, prayer times, iqamat
-                            countdown, and zen pray screen.
+                            Supercharge digital displays into information hub with prayer times, adhan countdown, and
+                            dynamic content.
                         </p>
 
                         <a class="mt-8 inline-block rounded-full border border-zinc-200 px-5 py-3 font-medium text-zinc-700 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
@@ -169,8 +168,8 @@ new class extends Component {
                         </h2>
 
                         <p class="mt-4 text-pretty text-zinc-700 dark:text-zinc-200">
-                            Build trust with the community with real-time donation, spending, appliances service
-                            history, and supply stock level.
+                            Build community trust with real-time dashboard showing donations, spendings, and maintenance
+                            history.
                         </p>
 
                         <a class="mt-8 inline-block rounded-full border border-zinc-200 px-5 py-3 font-medium text-zinc-700 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
@@ -197,8 +196,7 @@ new class extends Component {
                         </h2>
 
                         <p class="mt-4 text-pretty text-zinc-700 dark:text-zinc-200">
-                            Take control of mosque operations by updating gallery, donations, spendings, appliances
-                            and supply records.
+                            Update mosque information, financial data, and maintenance records via desktop or mobile.
                         </p>
 
                         <a class="mt-8 inline-block rounded-full border border-zinc-200 px-5 py-3 font-medium text-zinc-700 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white"
@@ -286,7 +284,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Managed hosting</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Cloud hosting</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -295,7 +293,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Automatic update</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Cloud database</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -304,7 +302,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Customer support</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Cloud storage</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -333,11 +331,10 @@ new class extends Component {
 
                     <p class="mt-2 sm:mt-4">
                         <strong class="text-3xl font-semibold text-zinc-900 sm:text-4xl dark:text-white">
-                            RM2,999
+                            RM299
                         </strong>
+                        <span class="text-sm font-medium text-zinc-700 dark:text-zinc-200">/month</span>
                     </p>
-
-                    <p class="text-sm font-medium text-zinc-700 dark:text-zinc-200">+ RM150/month</p>
                 </div>
 
                 <ul class="mt-6 space-y-2">
@@ -392,7 +389,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Managed hosting</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Cloud hosting</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -401,7 +398,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Automatic update</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Cloud database</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -410,7 +407,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Customer support</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Cloud storage</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -494,7 +491,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Managed hosting</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Custom hosting</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -503,7 +500,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Automatic update</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Custom database</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -512,7 +509,7 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
                         </svg>
 
-                        <span class="text-zinc-700 dark:text-zinc-200">Customer support</span>
+                        <span class="text-zinc-700 dark:text-zinc-200">Custom storage</span>
                     </li>
 
                     <li class="flex items-center gap-1">
@@ -554,8 +551,9 @@ new class extends Component {
             </summary>
 
             <p class="px-4 pt-4 text-zinc-900 dark:text-white">
-                It is a digital platform to manage mosque digital displays, cash flow, and inventory tracking. It helps
-                mosque committee automate operations and keep the community informed.
+                A modern mosque management system designed for committee to supercharge digital displays and to track
+                financial
+                and inventory records.
             </p>
         </details>
 
@@ -563,7 +561,7 @@ new class extends Component {
             <summary
                 class="flex items-center justify-between gap-1.5 rounded-md bg-zinc-50 p-4 text-zinc-900 dark:bg-zinc-800 dark:text-white">
                 <h2 class="text-lg font-medium">
-                    Is Smart TV required?
+                    Do we need Smart TV?
                 </h2>
 
                 <svg class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
@@ -573,8 +571,8 @@ new class extends Component {
             </summary>
 
             <p class="px-4 pt-4 text-zinc-900 dark:text-white">
-                Any digital display with a web browser can be used. We also offer a hardware for RM400 with free setup
-                and installation to convert any digital display to smart display.
+                Any display with a web browser works. We also provide hardware and service to convert standard display
+                to smart display for RM399.
             </p>
         </details>
 
@@ -582,7 +580,7 @@ new class extends Component {
             <summary
                 class="flex items-center justify-between gap-1.5 rounded-md bg-zinc-50 p-4 text-zinc-900 dark:bg-zinc-800 dark:text-white">
                 <h2 class="text-lg font-medium">
-                    Is it a monthly subscription?
+                    Which regions are supported?
                 </h2>
 
                 <svg class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
@@ -592,8 +590,8 @@ new class extends Component {
             </summary>
 
             <p class="px-4 pt-4 text-zinc-900 dark:text-white">
-                It is a one-time payment model. You only pay once for hardware installation, cloud deployment, and
-                user training. Flat fee RM150 covers server cost, support, and maintenance.
+                Current prayer time supported are Southeast Asia, Middle East, and North America. System-wide language
+                translation is coming soon.
             </p>
         </details>
 
@@ -611,8 +609,8 @@ new class extends Component {
             </summary>
 
             <p class="px-4 pt-4 text-zinc-900 dark:text-white">
-                It displays infographics, prayer times, iqamat countdowns, and a zen pray screen during prayer. Content
-                can be updated through the admin panel.
+                It displays infographics, prayer times, and adhan countdowns. It automatically switches to focus mode
+                during prayer. Content can be updated through the admin panel on mobile or desktop.
             </p>
         </details>
 
@@ -630,8 +628,8 @@ new class extends Component {
             </summary>
 
             <p class="px-4 pt-4 text-zinc-900 dark:text-white">
-                It is publicly accessible, providing real-time donation and spending cash flow, appliances service
-                history records, and supply stock level records to build trust within the community.
+                It provides a publicly accessible dashboard where the community can view real-time cash flow,
+                maintenance history, and stock supply levels.
             </p>
         </details>
 
@@ -649,8 +647,8 @@ new class extends Component {
             </summary>
 
             <p class="px-4 pt-4 text-zinc-900 dark:text-white">
-                Software and hardware installation and maintainance is included. On-site training will also be provided
-                for the mosque committee.
+                It includes cloud hosting, database, and storage, hands-on training for the mosque committee, customer
+                support, and system maintenance.
             </p>
         </details>
     </div>
@@ -666,7 +664,7 @@ new class extends Component {
                 </h2>
 
                 <p class="hidden text-zinc-700 md:mt-4 md:block dark:text-zinc-300">
-                    Join the mosques enhancing their workflows and building trust with their community.
+                    Join the mosques simplifying their operations and building trust with the community.
                 </p>
 
                 <div class="mt-4 md:mt-8">

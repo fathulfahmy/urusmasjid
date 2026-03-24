@@ -177,8 +177,8 @@ new #[Title('Display')] class extends Component {
             const overlay = document.getElementById('overlay');
 
             if (prayerCards && overlay) {
-                const iqamatDuration = {{ $this->mosque->iqamat }} * 60;
-                const prayerDuration = {{ $this->mosque->pray }} * 60;
+                const adhanDuration = {{ $this->mosque->adhan_duration }} * 60;
+                const prayerDuration = {{ $this->mosque->prayer_duration }} * 60;
                 const prayerUnit = {
                     'hour': "{{ __('h') }}",
                     'minute': "{{ __('m') }}",
@@ -211,9 +211,9 @@ new #[Title('Display')] class extends Component {
                             const second = diffTime % 60;
                             diffText.innerText =
                                 `${hour}${prayerUnit.hour} ${minute}${prayerUnit.minute} ${second}${prayerUnit.second}`;
-                        } else if (diffTime <= 0 && diffTime > -iqamatDuration) {
-                            diffText.innerText = "Iqamat";
-                        } else if (diffTime <= -iqamatDuration && diffTime > -(iqamatDuration +
+                        } else if (diffTime <= 0 && diffTime > -adhanDuration) {
+                            diffText.innerText = "Adhan";
+                        } else if (diffTime <= -adhanDuration && diffTime > -(adhanDuration +
                                 prayerDuration)) {
                             diffText.innerText =
                                 `0${prayerUnit.hour} 0${prayerUnit.minute} 0${prayerUnit.second}`;

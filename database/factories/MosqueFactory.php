@@ -64,8 +64,8 @@ class MosqueFactory extends Factory
             'method' => fake()->randomElement($methods),
             'school' => fake()->randomElement($schools),
             'tune' => '0,9,0,3,4,2,2,2,0',
-            'iqamat' => 15,
-            'pray' => 10,
+            'adhan_duration' => 10,
+            'prayer_duration' => 10,
         ];
     }
 
