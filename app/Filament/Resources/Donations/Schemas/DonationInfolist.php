@@ -15,10 +15,11 @@ class DonationInfolist
         return $schema
             ->components([
                 Section::make()->inlineLabel()->schema([
+                    TextEntry::make('id')->label('ID'),
                     TextEntry::make('amount')
                         ->numeric()
                         ->money('MYR')
-                        ->formatStateUsing(fn($state) => 'RM ' . number_format($state / 100, 2)),
+                        ->formatStateUsing(fn ($state) => 'RM '.number_format($state / 100, 2)),
                     TextEntry::make('donator'),
                     TextEntry::make('donated_at')->dateTime(),
                     MediaEntry::make('attachments'),
@@ -32,7 +33,7 @@ class DonationInfolist
                         ->placeholder('-'),
                     TextEntry::make('deleted_at')
                         ->dateTime()
-                        ->visible(fn(Donation $record): bool => $record->trashed()),
+                        ->visible(fn (Donation $record): bool => $record->trashed()),
                 ]),
             ]);
     }

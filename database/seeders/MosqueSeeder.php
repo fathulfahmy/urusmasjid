@@ -12,9 +12,13 @@ class MosqueSeeder extends Seeder
      */
     public function run(): void
     {
-        Mosque::create([
-            'name' => 'Sultan Abdullah',
-            'location' => 'WLY01',
+        Mosque::factory()->create([
+            'name' => 'Masjid Al-Sultan Abdullah',
+            'address' => 'Kuala Lumpur, Malaysia',
+            'timezone' => 'Asia/Kuala_Lumpur',
+            'method' => 17,
+            'school' => 0,
+            'tune' => '0,9,0,3,4,2,2,2,0',
         ]);
     }
 }

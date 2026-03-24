@@ -7,6 +7,7 @@ use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -16,6 +17,7 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\HtmlString;
 use UnitEnum;
 
 /**
@@ -49,93 +51,32 @@ class MosquePage extends Page
 
     public function form(Schema $schema): Schema
     {
-        $locations = [
-            // JOHOR
-            'JHR01' => 'JHR01 - Pulau Aur dan Pulau Pemanggil',
-            'JHR02' => 'JHR02 - Johor Bahru, Kota Tinggi, Mersing',
-            'JHR03' => 'JHR03 - Kluang, Pontian',
-            'JHR04' => 'JHR04 - Batu Pahat, Muar, Segamat, Gemas Johor',
-
-            // KEDAH
-            'KDH01' => 'KDH01 - Kota Setar, Kubang Pasu, Pokok Sena (Daerah Kecil)',
-            'KDH02' => 'KDH02 - Kuala Muda, Yan, Pendang',
-            'KDH03' => 'KDH03 - Padang Terap, Sik',
-            'KDH04' => 'KDH04 - Baling',
-            'KDH05' => 'KDH05 - Bandar Baharu, Kulim',
-            'KDH06' => 'KDH06 - Langkawi',
-            'KDH07' => 'KDH07 - Puncak Gunung Jerai',
-
-            // KELANTAN
-            'KTN01' => 'KTN01 - Bachok, Kota Bharu, Machang, Pasir Mas, Pasir Puteh, Tanah Merah, Tumpat, Kuala Krai, Mukim Chiku',
-            'KTN03' => 'KTN03 - Gua Musang (Daerah Galas Dan Bertam), Jeli',
-
-            // MELAKA
-            'MLK01' => 'MLK01 - Seluruh Negeri Melaka',
-
-            // NEGERI SEMBILAN
-            'NGS01' => 'NGS01 - Tampin, Jempol',
-            'NGS02' => 'NGS02 - Jelebu, Kuala Pilah, Port Dickson, Rembau, Seremban',
-
-            // PAHANG
-            'PHG01' => 'PHG01 - Pulau Tioman',
-            'PHG02' => 'PHG02 - Kuantan, Pekan, Rompin, Muadzam Shah',
-            'PHG03' => 'PHG03 - Jerantut, Temerloh, Maran, Bera, Chenor, Jengka',
-            'PHG04' => 'PHG04 - Bentong, Lipis, Raub',
-            'PHG05' => 'PHG05 - Genting Sempah, Janda Baik, Bukit Tinggi',
-            'PHG06' => 'PHG06 - Cameron Highlands, Genting Higlands, Bukit Fraser',
-
-            // PERLIS
-            'PLS01' => 'PLS01 - Kangar, Padang Besar, Arau',
-
-            // PULAU PINANG
-            'PNG01' => 'PNG01 - Seluruh Negeri Pulau Pinang',
-
-            // PERAK
-            'PRK01' => 'PRK01 - Tapah, Slim River, Tanjung Malim',
-            'PRK02' => 'PRK02 - Kuala Kangsar, Sg. Siput (Daerah Kecil), Ipoh, Batu Gajah, Kampar',
-            'PRK03' => 'PRK03 - Lenggong, Pengkalan Hulu, Grik',
-            'PRK04' => 'PRK04 - Temengor, Belum',
-            'PRK05' => 'PRK05 - Kg Gajah, Teluk Intan, Bagan Datuk, Seri Iskandar, Beruas, Parit, Lumut, Sitiawan, Pulau Pangkor',
-            'PRK06' => 'PRK06 - Selama, Taiping, Bagan Serai, Parit Buntar',
-            'PRK07' => 'PRK07 - Bukit Larut',
-
-            // SABAH
-            'SBH01' => 'SBH01 - Bahagian Sandakan (Timur), Bukit Garam, Semawang, Temanggong, Tambisan, Bandar Sandakan, Sukau',
-            'SBH02' => 'SBH02 - Beluran, Telupid, Pinangah, Terusan, Kuamut, Bahagian Sandakan (Barat)',
-            'SBH03' => 'SBH03 - Lahad Datu, Silabukan, Kunak, Sahabat, Semporna, Tungku, Bahagian Tawau (Timur)',
-            'SBH04' => 'SBH04 - Bandar Tawau, Balong, Merotai, Kalabakan, Bahagian Tawau (Barat)',
-            'SBH05' => 'SBH05 - Kudat, Kota Marudu, Pitas, Pulau Banggi, Bahagian Kudat',
-            'SBH06' => 'SBH06 - Gunung Kinabalu',
-            'SBH07' => 'SBH07 - Kota Kinabalu, Ranau, Kota Belud, Tuaran, Penampang, Papar, Putatan, Bahagian Pantai Barat',
-            'SBH08' => 'SBH08 - Pensiangan, Keningau, Tambunan, Nabawan, Bahagian Pendalaman (Atas)',
-            'SBH09' => 'SBH09 - Beaufort, Kuala Penyu, Sipitang, Tenom, Long Pa Sia, Membakut, Weston, Bahagian Pendalaman (Bawah)',
-
-            // SELANGOR
-            'SGR01' => 'SGR01 - Gombak, Petaling, Sepang, Hulu Langat, Hulu Selangor, S.Alam',
-            'SGR02' => 'SGR02 - Kuala Selangor, Sabak Bernam',
-            'SGR03' => 'SGR03 - Klang, Kuala Langat',
-
-            // SARAWAK
-            'SWK01' => 'SWK01 - Limbang, Lawas, Sundar, Trusan',
-            'SWK02' => 'SWK02 - Miri, Niah, Bekenu, Sibuti, Marudi',
-            'SWK03' => 'SWK03 - Pandan, Belaga, Suai, Tatau, Sebauh, Bintulu',
-            'SWK04' => 'SWK04 - Sibu, Mukah, Dalat, Song, Igan, Oya, Balingian, Kanowit, Kapit',
-            'SWK05' => 'SWK05 - Sarikei, Matu, Julau, Rajang, Daro, Bintangor, Belawai',
-            'SWK06' => 'SWK06 - Lubok Antu, Sri Aman, Roban, Debak, Kabong, Lingga, Engkelili, Betong, Spaoh, Pusa, Saratok',
-            'SWK07' => 'SWK07 - Serian, Simunjan, Samarahan, Sebuyau, Meludam',
-            'SWK08' => 'SWK08 - Kuching, Bau, Lundu, Sematan',
-            'SWK09' => 'SWK09 - Zon Khas (Kampung Patarikan)',
-
-            // TERENGGANU
-            'TRG01' => 'TRG01 - Kuala Terengganu, Marang, Kuala Nerus',
-            'TRG02' => 'TRG02 - Besut, Setiu',
-            'TRG03' => 'TRG03 - Hulu Terengganu',
-            'TRG04' => 'TRG04 - Dungun, Kemaman',
-
-            // WILAYAH PERSEKUTUAN
-            'WLY01' => 'WLY01 - Kuala Lumpur, Putrajaya',
-            'WLY02' => 'WLY02 - Labuan',
+        $methods = [
+            0 => '0 - Jafari / Shia Ithna-Ashari',
+            1 => '1 - University of Islamic Sciences, Karachi',
+            2 => '2 - Islamic Society of North America',
+            3 => '3 - Muslim World League',
+            4 => '4 - Umm Al-Qura University, Makkah',
+            5 => '5 - Egyptian General Authority of Survey',
+            7 => '7 - Institute of Geophysics, University of Tehran',
+            8 => '8 - Gulf Region',
+            9 => '9 - Kuwait',
+            10 => '10 - Qatar',
+            11 => '11 - Majlis Ugama Islam Singapura, Singapore',
+            12 => '12 - Union Organization islamic de France',
+            13 => '13 - Diyanet İşleri Başkanlığı, Turkey',
+            14 => '14 - Spiritual Administration of Muslims of Russia',
+            15 => '15 - Moonsighting Committee Worldwide',
+            16 => '16 - Dubai (experimental)',
+            17 => '17 - Jabatan Kemajuan Islam Malaysia (JAKIM)',
+            18 => '18 - Tunisia',
+            19 => '19 - Algeria',
+            20 => '20 - KEMENAG - Indonesia',
+            21 => '21 - Morocco',
+            22 => '22 - Comunidade Islamica de Lisboa',
+            23 => '23 - Ministry of Awqaf, Jordan',
         ];
+
         return $schema
             ->components([
                 Form::make([
@@ -143,20 +84,60 @@ class MosquePage extends Page
                         ->columns(2)
                         ->schema([
                             Section::make([
-                                TextInput::make('name')
-                                    ->placeholder('Al-Sultan Abdullah')
-                                    ->required(),
-                                Select::make('location')
-                                    ->options($locations)
-                                    ->searchable()
-                                    ->required(),
+                                Section::make([
+                                    Textarea::make('address')
+                                        ->placeholder('Kuala Lumpur, Malaysia')
+                                        ->required(),
+                                    Select::make('timezone')
+                                        ->options(array_combine(timezone_identifiers_list(), timezone_identifiers_list()))
+                                        ->searchable()
+                                        ->required()
+                                        ->default('Asia/Kuala_Lumpur'),
+                                    Select::make('method')
+                                        ->options($methods)
+                                        ->searchable()
+                                        ->required()
+                                        ->default(17),
+                                    Select::make('school')
+                                        ->options([
+                                            0 => '0 - Shafi',
+                                            1 => '1 - Hanafi',
+                                        ])
+                                        ->searchable()
+                                        ->required()
+                                        ->default(0),
+                                    TextInput::make('tune')
+                                        ->placeholder('Imsak,Fajr,Sunrise,Dhuhr,Asr,Maghrib,Sunset,Isha,Midnight')
+                                        ->default('0,9,0,3,4,2,2,2,0')
+                                        ->helperText(fn () => new HtmlString(
+                                            '<div class="wrap-break">
+                                            Comma separated numbers to offset prayer times in minutes. The order is Imsak, Fajr, Sunrise, Dhuhr, Asr, Maghrib, Sunset, Isha, Midnight.
+                                        </div>'
+                                        ))
+                                        ->required(),
+                                ]),
+                                Section::make([
+                                    TextInput::make('iqamat')
+                                        ->numeric()
+                                        ->minValue(0)
+                                        ->default(10)
+                                        ->required(),
+                                    TextInput::make('pray')
+                                        ->numeric()
+                                        ->minValue(0)
+                                        ->default(10)
+                                        ->required(),
+                                ]),
                             ]),
                             Section::make([
+                                TextInput::make('name')
+                                    ->placeholder('Masjid Al-Sultan Abdullah')
+                                    ->required(),
                                 SpatieMediaLibraryFileUpload::make('logo')
                                     ->disk('media')
                                     ->nullable(),
                             ]),
-                        ])
+                        ]),
                 ])
                     ->livewireSubmitHandler('save')
                     ->footer([
@@ -177,14 +158,23 @@ class MosquePage extends Page
 
         $record = $this->getRecord();
 
-        if (!$record) {
-            $record = new Mosque();
+        if (app()->environment('demo')) {
+            Notification::make()
+                ->info()
+                ->title('Live Demo')
+                ->body('Changes will not be saved')
+                ->send();
+
+            return;
+        }
+
+        if (! $record) {
+            $record = new Mosque;
             $record->name = null;
             $record->location = null;
         }
 
         $record->fill($data);
-        $record->save();
 
         if ($record->wasRecentlyCreated) {
             $this->form->record($record)->saveRelationships();
@@ -194,6 +184,8 @@ class MosquePage extends Page
             ->success()
             ->title('Saved')
             ->send();
+
+        $record->save();
     }
 
     public function getRecord(): ?Mosque

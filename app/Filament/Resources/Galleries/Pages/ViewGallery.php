@@ -10,6 +10,10 @@ class ViewGallery extends ViewRecord
 {
     protected static string $resource = GalleryResource::class;
 
+    protected static ?string $title = 'View Gallery';
+
+    protected ?string $heading = '';
+
     protected function getHeaderActions(): array
     {
         return [

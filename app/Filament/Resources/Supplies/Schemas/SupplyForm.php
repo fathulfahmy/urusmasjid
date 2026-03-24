@@ -24,7 +24,7 @@ class SupplyForm
                     TextInput::make('unit')
                         ->placeholder('Pack')
                         ->required(),
-                ])
+                ]),
             ]);
     }
 }

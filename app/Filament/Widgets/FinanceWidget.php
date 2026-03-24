@@ -4,9 +4,9 @@ namespace App\Filament\Widgets;
 
 use App\Models\Donation;
 use App\Models\Spending;
+use Filament\Widgets\Concerns\InteractsWithPageFilters;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-use Filament\Widgets\Concerns\InteractsWithPageFilters;
 use Illuminate\Database\Eloquent\Builder;
 
 class FinanceWidget extends StatsOverviewWidget
@@ -24,13 +24,13 @@ class FinanceWidget extends StatsOverviewWidget
         $end_date = $this->pageFilters['end_date'] ?? null;
 
         $donations_amount = Donation::query()
-            ->when($start_date, fn(Builder $query) => $query->whereDate('donated_at', '>=', $start_date))
-            ->when($end_date, fn(Builder $query) => $query->whereDate('donated_at', '<=', $end_date))
+            ->when($start_date, fn (Builder $query) => $query->whereDate('donated_at', '>=', $start_date))
+            ->when($end_date, fn (Builder $query) => $query->whereDate('donated_at', '<=', $end_date))
             ->sum('amount');
 
         $spending_amount = Spending::query()
-            ->when($start_date, fn(Builder $query) => $query->whereDate('spent_at', '>=', $start_date))
-            ->when($end_date, fn(Builder $query) => $query->whereDate('spent_at', '<=', $end_date))
+            ->when($start_date, fn (Builder $query) => $query->whereDate('spent_at', '>=', $start_date))
+            ->when($end_date, fn (Builder $query) => $query->whereDate('spent_at', '<=', $end_date))
             ->sum('amount');
 
         return [

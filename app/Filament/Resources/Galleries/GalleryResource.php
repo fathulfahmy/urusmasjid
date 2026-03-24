@@ -23,7 +23,6 @@ class GalleryResource extends Resource
 {
     protected static ?string $model = Gallery::class;
 
-
     protected static ?string $pluralModelLabel = 'gallery';
 
     protected static ?string $slug = 'gallery';

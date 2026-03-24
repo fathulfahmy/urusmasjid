@@ -6,7 +6,6 @@
 /public/media
 /storage/*.key
 /storage/pail
-/storage/
 /vendor
 .env
 .env.backup
@@ -23,3 +22,10 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+/storage/*
+!/storage/.gitignore
+!/storage/app/
+!/storage/framework/
+!/storage/logs/

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Gallery;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
 /**
@@ -30,12 +31,12 @@ class GalleryFactory extends Factory
      */
     public function configure(): static
     {
-        return $this->afterCreating(function (Gallery $gallery) {
-            $directory = database_path('seeders/gallery');
+        return $this->afterCreating(function (Model $model) {
+            $directory = database_path('seeders/media/gallery');
             $files = File::files($directory);
             if (count($files) > 0) {
                 $randomFile = fake()->randomElement($files);
-                $gallery->addMedia($randomFile->getPathname())
+                $model->addMedia($randomFile->getPathname())
                     ->preservingOriginal()
                     ->toMediaCollection('default', 'media');
             }

@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Donation;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 /**
  * @extends Factory<Donation>
@@ -20,11 +22,14 @@ class DonationFactory extends Factory
         $amount = [1000, 5000, 10000, 50000, 100000];
         $donators = [
             'Hamba Allah',
-            'Tan Sri Dr. Zul',
-            'Dato Seri Ahmad',
-            'Puan Sri Salmah',
-            'Keluarga Arwah Haji Bakri',
-            'Syarikat Teguh Sdn Bhd'
+            'Haji Mubarak',
+            'Hajah Jamilah',
+            'Tengku Iskandar',
+            'Keluarga Almarhum Haji Khalid',
+            'Waris Almarhumah Hajah Alias',
+            'Restoran Salam Sentosa',
+            'Weekly Collection',
+            'Empu Sdn Bhd',
         ];
 
         return [
@@ -32,5 +37,22 @@ class DonationFactory extends Factory
             'donator' => fake()->randomElement($donators),
             'donated_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
+    }
+
+    /**
+     * Configure the model factory.
+     */
+    public function configure(): static
+    {
+        return $this->afterCreating(function (Model $model) {
+            $directory = database_path('seeders/media/receipts');
+            $files = File::files($directory);
+            if (count($files) > 0) {
+                $randomFile = fake()->randomElement($files);
+                $model->addMedia($randomFile->getPathname())
+                    ->preservingOriginal()
+                    ->toMediaCollection('default', 'media');
+            }
+        });
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Exports\ActivityLogExporter;
 use BackedEnum;
+use Filament\Actions\ExportAction;
 use Filament\Pages\Page;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -19,7 +21,6 @@ use UnitEnum;
  */
 class ActivityLogPage extends Page implements HasTable
 {
-
     use InteractsWithTable;
 
     protected string $view = 'filament.pages.activity-log-page';
@@ -40,48 +41,70 @@ class ActivityLogPage extends Page implements HasTable
     {
         return $table
             ->query(Activity::query())
-            ->defaultSort('updated_at', 'desc')
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(ActivityLogExporter::class),
+            ])
+            ->defaultSort('created_at')
             ->columns([
                 TextColumn::make('id')
-                    ->label('ID')
+                    ->label('Log ID')
+                    ->wrap()
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('causer_type')
                     ->label('Causer')
-                    ->formatStateUsing(fn($state) => Str::of(class_basename($state))->replaceMatches('/([a-z0-9])([A-Z])/', '$1 $2')->title())
+                    ->wrap()
+                    ->formatStateUsing(fn ($state) => Str::of(class_basename($state))->replaceMatches('/([a-z0-9])([A-Z])/', '$1 $2')->title())
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('causer_id')
                     ->label('Causer ID')
+                    ->wrap()
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('subject_type')
                     ->label('Subject')
-                    ->formatStateUsing(fn($state) => Str::of(class_basename($state))->replaceMatches('/([a-z0-9])([A-Z])/', '$1 $2')->title())
+                    ->wrap()
+                    ->formatStateUsing(fn ($state) => Str::of(class_basename($state))->replaceMatches('/([a-z0-9])([A-Z])/', '$1 $2')->title())
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('subject_id')
                     ->label('Subject ID')
+                    ->wrap()
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('description')
+                    ->wrap()
                     ->toggleable(),
                 TextColumn::make('properties')
+                    ->state(function ($record): ?array {
+                        return collect($record->properties['attributes'] ?? $record->properties)
+                            ->map(function ($value, $key) {
+                                $k = str($key)
+                                    ->replace('_', ' ')
+                                    ->title()
+                                    ->replace('Id', 'ID')
+                                    ->toString();
+                                $v = is_array($value) ? json_encode($value) : $value;
+
+                                return "$k: $v";
+                            })
+                            ->values()
+                            ->toArray();
+                    })
+                    ->listWithLineBreaks()
+                    ->wrap()
                     ->toggleable(),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ]);
     }
 }
-

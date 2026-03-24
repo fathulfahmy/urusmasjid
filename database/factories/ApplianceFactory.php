@@ -18,11 +18,14 @@ class ApplianceFactory extends Factory
     public function definition(): array
     {
         $appliances = [
-            'Air Conditioner' => ['Panasonic', 'Daikin', 'York'],
-            'Audio' => ['Yamaha', 'Bose', 'TOA'],
-            'Camera' => ['Hikvision', 'Dahua'],
-            'Water Cooler' => ['Coway', 'Cuckoo'],
-            'Projector' => ['Epson', 'Sony']
+            'Air Conditioner' => ['York', 'Daikin'],
+            'Fan' => ['Elba', 'Panasonic', 'Khind'],
+            'Audio' => ['Bose', 'JBL', 'Yamaha'],
+            'CCTV' => ['TP-Link', 'Dahua', 'Reolink'],
+            'Water Purifier' => ['Coway', 'Cuckoo'],
+            'Projector' => ['Epson', 'BenQ', 'ViewSonic'],
+            'Refrigerator' => ['Samsung', 'LG'],
+            'Printer' => ['Canon', 'Brother', 'HP'],
         ];
         $category = fake()->randomElement(array_keys($appliances));
         $brand = fake()->randomElement($appliances[$category]);
@@ -31,7 +34,7 @@ class ApplianceFactory extends Factory
             'category' => $category,
             'brand' => $brand,
             'model' => strtoupper(fake()->bothify('??###')),
-            'serial_number' => strtoupper(fake()->bothify('SN####????##')),
+            'label' => strtoupper(fake()->bothify('SN####????##')),
             'serviced_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }

@@ -25,7 +25,7 @@ class SpendingResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingBag;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Finance';
+    protected static string|UnitEnum|null $navigationGroup = 'Finance';
 
     protected static ?int $navigationSort = 2;
 

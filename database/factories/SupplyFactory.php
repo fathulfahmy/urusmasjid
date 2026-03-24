@@ -18,12 +18,18 @@ class SupplyFactory extends Factory
     public function definition(): array
     {
         $supplies = [
-            'Liquid Soap' => 'Bottle',
-            'Floor Cleaner' => 'Gallon',
+            'Hand Soap' => 'Bottle',
+            'Floor Cleaner' => 'Bottle',
             'Toilet Paper' => 'Roll',
+            'Mineral Water' => 'Bottle',
+            'Coffee' => 'Packet',
+            'Tea' => 'Packet',
+            'Sugar' => 'Packet',
             'A4 Paper' => 'Ream',
-            'Mineral Water' => 'Carton',
-            'Prayer Mats' => 'Pieces'
+            'Ink Toner' => 'Catridge',
+            'Air Freshener' => 'Catridge',
+            'Prayer Mats' => 'Pieces',
+            'Telekung' => 'Pieces',
         ];
         $name = fake()->randomElement(array_keys($supplies));
         $min_quantity = 5;

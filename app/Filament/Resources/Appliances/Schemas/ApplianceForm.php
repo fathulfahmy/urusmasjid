@@ -20,7 +20,7 @@ class ApplianceForm
                     TextInput::make('model')
                         ->placeholder('Smarto FTKH-B (1.0 hp)')
                         ->required(),
-                    TextInput::make('serial_number')
+                    TextInput::make('label')
                         ->placeholder('FTKB25JV1/E027093')
                         ->required(),
                 ]),

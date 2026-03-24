@@ -3,7 +3,6 @@
 namespace App\Filament\Tables\Columns;
 
 use Filament\Tables\Columns\Column;
-use Closure;
 
 class MediaColumn extends Column
 {

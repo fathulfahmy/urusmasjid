@@ -10,6 +10,10 @@ class ViewSpending extends ViewRecord
 {
     protected static string $resource = SpendingResource::class;
 
+    protected static ?string $title = 'View Spending';
+
+    protected ?string $heading = '';
+
     protected function getHeaderActions(): array
     {
         return [

@@ -15,6 +15,7 @@ class GalleryInfolist
         return $schema
             ->components([
                 Section::make()->inlineLabel()->schema([
+                    TextEntry::make('id')->label('ID'),
                     MediaEntry::make('media'),
                     TextEntry::make('duration')
                         ->numeric(),
@@ -28,7 +29,7 @@ class GalleryInfolist
                         ->placeholder('-'),
                     TextEntry::make('deleted_at')
                         ->dateTime()
-                        ->visible(fn(Gallery $record): bool => $record->trashed()),
+                        ->visible(fn (Gallery $record): bool => $record->trashed()),
                 ]),
             ]);
     }

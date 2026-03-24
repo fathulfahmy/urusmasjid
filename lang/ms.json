@@ -1,5 +1,5 @@
 {
-    "Mosque Management System": "Sistem Pengurusan Masjid",
+    "Clock": "Jam",
     "Fajr": "Subuh",
     "Dhuhr": "Zohor",
     "Asr": "Asar",
@@ -8,5 +8,8 @@
     "hour": "jam",
     "minute": "minit",
     "second": "saat",
+    "h": "j",
+    "m": "m",
+    "s": "s",
     "Pray": "Solat"
 }

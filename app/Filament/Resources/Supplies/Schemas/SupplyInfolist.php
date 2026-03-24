@@ -14,6 +14,7 @@ class SupplyInfolist
         return $schema
             ->components([
                 Section::make()->inlineLabel()->schema([
+                    TextEntry::make('id')->label('ID'),
                     TextEntry::make('name'),
                     TextEntry::make('quantity')
                         ->numeric(),
@@ -28,8 +29,8 @@ class SupplyInfolist
                         ->placeholder('-'),
                     TextEntry::make('deleted_at')
                         ->dateTime()
-                        ->visible(fn(Supply $record): bool => $record->trashed()),
-                ])
+                        ->visible(fn (Supply $record): bool => $record->trashed()),
+                ]),
             ]);
     }
 }

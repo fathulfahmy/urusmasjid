@@ -10,6 +10,10 @@ class ViewAppliance extends ViewRecord
 {
     protected static string $resource = ApplianceResource::class;
 
+    protected static ?string $title = 'View Appliance';
+
+    protected ?string $heading = '';
+
     protected function getHeaderActions(): array
     {
         return [

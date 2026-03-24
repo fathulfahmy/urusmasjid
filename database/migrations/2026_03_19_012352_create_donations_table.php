@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('donations', function (Blueprint $table) {
-            $table->id();
-            $table->integer("amount");
-            $table->string("donator");
-            $table->dateTime("donated_at");
+            $table->uuid('id')->primary();
+            $table->integer('amount');
+            $table->string('donator');
+            $table->dateTime('donated_at');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -13,9 +13,6 @@
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
-@variant dark (&:where(.dark, .dark *));
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
     --font-sans:
         "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",

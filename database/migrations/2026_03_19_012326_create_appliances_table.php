@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('appliances', function (Blueprint $table) {
-            $table->id();
-            $table->string("category");
-            $table->string("brand");
-            $table->string("model");
-            $table->string("serial_number");
-            $table->dateTime("serviced_at")->nullable();
+            $table->uuid('id')->primary();
+            $table->string('category');
+            $table->string('brand');
+            $table->string('model');
+            $table->string('label');
+            $table->dateTime('serviced_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

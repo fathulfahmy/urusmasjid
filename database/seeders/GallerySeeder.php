@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Gallery;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GallerySeeder extends Seeder
@@ -14,5 +13,8 @@ class GallerySeeder extends Seeder
     public function run(): void
     {
         Gallery::factory()->count(10)->create();
+
+        $ids = Gallery::pluck('id')->toArray();
+        Gallery::setNewOrder($ids);
     }
 }

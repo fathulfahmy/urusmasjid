@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::livewire('/', 'pages::display');
-Route::livewire('/report', 'pages::report');
+Route::livewire('/', 'pages::home')->name('home');
+Route::livewire('/display', 'pages::display')->name('display');
+Route::livewire('/report', 'pages::report')->name('report');
 
-require __DIR__ . '/settings.php';
+require __DIR__.'/settings.php';

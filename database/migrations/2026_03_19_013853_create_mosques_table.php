@@ -12,9 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mosques', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->text("location");
+            $table->uuid('id')->primary();
+            $table->string('name');
+            $table->text('address');
+            $table->string('timezone')->default('Asia/Kuala_Lumpur');
+            $table->string('method')->default(17);
+            $table->string('school')->default(0);
+            $table->string('tune')->default('0,0,0,0,0,0,0,0,0');
+            $table->float('iqamat')->default(10);
+            $table->float('pray')->default(10);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,9 +14,10 @@ class ApplianceInfolist
         return $schema
             ->components([
                 Section::make()->inlineLabel()->schema([
+                    TextEntry::make('id')->label('ID'),
                     TextEntry::make('brand'),
                     TextEntry::make('model'),
-                    TextEntry::make('serial_number'),
+                    TextEntry::make('label'),
                     TextEntry::make('category'),
                     TextEntry::make('serviced_at')
                         ->dateTime(),
@@ -30,7 +31,7 @@ class ApplianceInfolist
                         ->placeholder('-'),
                     TextEntry::make('deleted_at')
                         ->dateTime()
-                        ->visible(fn(Appliance $record): bool => $record->trashed()),
+                        ->visible(fn (Appliance $record): bool => $record->trashed()),
                 ]),
             ]);
     }

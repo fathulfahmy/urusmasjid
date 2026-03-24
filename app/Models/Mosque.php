@@ -5,7 +5,13 @@ namespace App\Models;
 class Mosque extends BaseModel
 {
     protected $fillable = [
-        "name",
-        "location",
+        'name',
+        'address',
+        'timezone',
+        'method',
+        'school',
+        'tune',
+        'iqamat',
+        'pray',
     ];
 }

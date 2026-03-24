@@ -10,6 +10,10 @@ class ViewSupply extends ViewRecord
 {
     protected static string $resource = SupplyResource::class;
 
+    protected static ?string $title = 'View Supply';
+
+    protected ?string $heading = '';
+
     protected function getHeaderActions(): array
     {
         return [

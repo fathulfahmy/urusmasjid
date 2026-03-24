@@ -2,82 +2,129 @@
 
 namespace App\Livewire;
 
-use App\Models\Donation;
-use App\Models\Spending;
 use App\Models\Appliance;
+use App\Models\Donation;
+use App\Models\Mosque;
+use App\Models\Spending;
 use App\Models\Supply;
 use App\Filament\Resources\Donations\Tables\DonationsTable;
+use App\Filament\Resources\Donations\Schemas\DonationInfolist;
 use App\Filament\Resources\Spendings\Tables\SpendingsTable;
+use App\Filament\Resources\Spendings\Schemas\SpendingInfolist;
 use App\Filament\Resources\Appliances\Tables\AppliancesTable;
+use App\Filament\Resources\Appliances\Schemas\ApplianceInfolist;
 use App\Filament\Resources\Supplies\Tables\SuppliesTable;
+use App\Filament\Resources\Supplies\Schemas\SupplyInfolist;
+use Filament\Actions\ViewAction;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Schemas\Schema;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Url;
 
-new class extends Component implements HasActions, HasSchemas, HasTable {
+new #[Title('Report')] class extends Component implements HasActions, HasSchemas, HasTable {
     use InteractsWithActions;
     use InteractsWithSchemas;
     use InteractsWithTable;
 
-    public string $active_tab = 'donations';
+    #[Url(as: 'q', keep: true)]
+    public string $param = 'donations';
+
+    #[Computed]
+    public function mosque()
+    {
+        return Mosque::latest()->first();
+    }
+
+    public function mount()
+    {
+        if (!in_array($this->param, ['donations', 'spendings', 'appliances', 'supplies'])) {
+            abort(404);
+        }
+    }
+
+    public function setTab(string $tab)
+    {
+        return $this->redirect(route('report', ['q' => $tab]), navigate: true);
+    }
 
     public function table(Table $table): Table
     {
-        $query = match ($this->active_tab) {
-            'donations' => Donation::query(),
+        $query = match ($this->param) {
             'spendings' => Spending::query(),
             'appliances' => Appliance::query(),
             'supplies' => Supply::query(),
+            default => Donation::query(),
         };
 
-        $active_table = match ($this->active_tab) {
-            'donations' => DonationsTable::class,
+        $paramle = match ($this->param) {
             'spendings' => SpendingsTable::class,
             'appliances' => AppliancesTable::class,
             'supplies' => SuppliesTable::class,
+            default => DonationsTable::class,
         };
 
-        return $table->query($query)->columns($active_table::configure(Table::make($this))->getColumns());
-    }
-
-    public function updatedActiveTab()
-    {
-        $this->resetTable();
+        return $paramle
+            ::configure($table)
+            ->query($query)
+            ->recordActions([
+                ViewAction::make()
+                    ->infolist(
+                        fn() => match ($this->param) {
+                            'spendings' => SpendingInfolist::configure(Schema::make())->getComponents(),
+                            'appliances' => ApplianceInfolist::configure(Schema::make())->getComponents(),
+                            'supplies' => SupplyInfolist::configure(Schema::make())->getComponents(),
+                            default => DonationInfolist::configure(Schema::make())->getComponents(),
+                        },
+                    )
+                    ->modalSubmitAction(false),
+            ])
+            ->filters([])
+            ->headerActions([])
+            ->bulkActions([])
+            ->toolbarActions([]);
     }
 };
 ?>
 
-<div class="mx-auto max-w-7xl p-8">
+<div class="mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+    <div class="mx-auto mb-8 mt-16 max-w-lg text-center">
+        @if ($this->mosque?->getFirstMediaUrl())
+            <img class="mx-auto w-24 pb-4" src="{{ $this->mosque->getFirstMediaUrl() }}">
+        @endif
+        <h2 class="text-3xl/tight font-semibold text-zinc-900 sm:text-4xl dark:text-white">
+            {{ $this->mosque?->name ?? 'Report' }}
+        </h2>
+    </div>
+
     <div class="pb-4">
         <x-filament::tabs class="w-fit">
-            <x-filament::tabs.item :active="$active_tab === 'donations'" wire:click="$set('active_tab', 'donations')">
+            <x-filament::tabs.item :active="$param === 'donations'" wire:click="setTab('donations')">
                 Donations
             </x-filament::tabs.item>
 
-            <x-filament::tabs.item :active="$active_tab === 'spendings'" wire:click="$set('active_tab', 'spendings')">
-                Spending
+            <x-filament::tabs.item :active="$param === 'spendings'" wire:click="setTab('spendings')">
+                Spendings
             </x-filament::tabs.item>
 
-            <x-filament::tabs.item :active="$active_tab === 'appliances'" wire:click="$set('active_tab', 'appliances')">
+            <x-filament::tabs.item :active="$param === 'appliances'" wire:click="setTab('appliances')">
                 Appliances
             </x-filament::tabs.item>
 
-            <x-filament::tabs.item :active="$active_tab === 'supplies'" wire:click="$set('active_tab', 'supplies')">
+            <x-filament::tabs.item :active="$param === 'supplies'" wire:click="setTab('supplies')">
                 Supplies
             </x-filament::tabs.item>
         </x-filament::tabs>
     </div>
 
-    <div wire:loading.remove wire:target="active_tab">
+    <div>
         {{ $this->table }}
-    </div>
-
-    <div class="items-center justify-center" wire:loading.flex wire:target="active_tab">
-        <x-filament::loading-indicator class="h-96" />
     </div>
 </div>

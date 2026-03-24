@@ -10,6 +10,10 @@ class ViewDonation extends ViewRecord
 {
     protected static string $resource = DonationResource::class;
 
+    protected static ?string $title = 'View Donation';
+
+    protected ?string $heading = '';
+
     protected function getHeaderActions(): array
     {
         return [

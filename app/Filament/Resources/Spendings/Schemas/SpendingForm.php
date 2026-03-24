@@ -22,8 +22,8 @@ class SpendingForm
                         ->numeric()
                         ->mask(RawJs::make('$money($input)'))
                         ->stripCharacters([','])
-                        ->formatStateUsing(fn($state) => number_format($state / 100, 2, '.', ''))
-                        ->dehydrateStateUsing(fn($state) => (int) round($state * 100))
+                        ->formatStateUsing(fn ($state) => number_format($state / 100, 2, '.', ''))
+                        ->dehydrateStateUsing(fn ($state) => (int) round($state * 100))
                         ->step(0.01)
                         ->required(),
                     TextInput::make('purpose')
