@@ -121,13 +121,13 @@ class MosquePage extends Page
                                         ->numeric()
                                         ->minValue(0)
                                         ->default(10)
-                                        ->suffix('second')
+                                        ->suffix('minute')
                                         ->required(),
                                     TextInput::make('prayer_duration')
                                         ->numeric()
                                         ->minValue(0)
                                         ->default(10)
-                                        ->suffix('second')
+                                        ->suffix('minute')
                                         ->required(),
                                 ]),
                             ]),
