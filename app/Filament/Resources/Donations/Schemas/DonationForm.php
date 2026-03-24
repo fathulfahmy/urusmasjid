@@ -35,7 +35,6 @@ class DonationForm
                 ]),
                 Section::make([
                     SpatieMediaLibraryFileUpload::make('attachments')
-                        ->disk('media')
                         ->multiple()
                         ->reorderable()
                         ->nullable(),

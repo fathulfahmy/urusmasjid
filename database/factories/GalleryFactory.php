@@ -38,7 +38,7 @@ class GalleryFactory extends Factory
                 $randomFile = fake()->randomElement($files);
                 $model->addMedia($randomFile->getPathname())
                     ->preservingOriginal()
-                    ->toMediaCollection('default', 'media');
+                    ->toMediaCollection();
             }
         });
     }

@@ -15,7 +15,6 @@ class GalleryForm
             ->components([
                 Section::make([
                     SpatieMediaLibraryFileUpload::make('media')
-                        ->disk('media')
                         ->required(),
                 ]),
                 Section::make([

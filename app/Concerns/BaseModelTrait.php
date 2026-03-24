@@ -24,13 +24,6 @@ trait BaseModelTrait
             ->dontSubmitEmptyLogs();
     }
 
-    public function registerMediaCollections(): void
-    {
-        $this
-            ->addMediaCollection('default')
-            ->useDisk('media');
-    }
-
     public function registerMediaConversions(?Media $media = null): void
     {
         if ($media && $media->mime_type == 'application/pdf') {

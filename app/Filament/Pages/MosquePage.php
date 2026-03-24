@@ -134,7 +134,6 @@ class MosquePage extends Page
                                     ->placeholder('Masjid Al-Sultan Abdullah')
                                     ->required(),
                                 SpatieMediaLibraryFileUpload::make('logo')
-                                    ->disk('media')
                                     ->nullable(),
                             ]),
                         ]),
